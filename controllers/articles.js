@@ -7,7 +7,7 @@ module.exports = {
 			$ = cheerio.load(html);
 			$("h2.story-heading").each(function(i,element){
 				var headline = $(element).children().text().trim();
-				var summary = $(element).next(".summary");
+				var summary = $(element).next();
 
 			article.push({
 				headline:headline,
