@@ -4,7 +4,6 @@ var express = require("express"),
 	router = express.Router(),
 	article = require("../controllers/articles"),
 	ArticleModel = require("../models/article"),
-	morgan = require("morgan"),
 	Comments = require("../models/comments");
 
 mongoose.connect("mongodb://localhost")
