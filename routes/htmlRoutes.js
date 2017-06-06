@@ -2,8 +2,8 @@ var express = require("express"),
 	bodyParser = require("body-parser"),
 	router = express.Router(),
 	articleCont = require("../controllers/articles"),
-	Article = require("../models/Article"),
-	Comment = require("../models/Comment"),
+	Article = require("../models/article"),
+	Comment = require("../models/comment"),
 	mongoose = require("mongoose");
 
 

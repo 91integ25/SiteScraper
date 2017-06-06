@@ -1,6 +1,6 @@
 var mongoose = require("mongoose"),
-	Article = require("../models/Article"),
-	Comments = require("../models/Comment");
+	Article = require("../models/article"),
+	Comments = require("../models/comment");
 
 mongoose.connect("mongodb://localhost");
 
