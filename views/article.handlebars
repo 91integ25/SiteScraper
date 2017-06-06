@@ -5,12 +5,11 @@
 	</div>
 	<div class="panel-body">
 		<p class="">{{summary}}</p>
-		<form action="/comment" method="post">
+		<form action="/save" method="post">
 			<input type="hidden" name="headline" value="{{headline}}">
 			<input type="hidden" name="link" value="{{link}}">
 			<input type="hidden" name="summary" value="{{summary}}">
-			<input type="text" name="comment" value="">
-			<button class=""type="submit">Save comment</button>
+			<button class="pull-right"type="submit">Save</button>
 		</form>
 	</div>
 </div>

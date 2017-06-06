@@ -1,5 +1,7 @@
 var mongoose = require("mongoose"),
-	schema = mongoose.Schema,
+
+	Schema = mongoose.Schema,
+	
 	CommentSchema = new Schema({
 		comment:{
 			type:String,

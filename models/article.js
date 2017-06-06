@@ -1,7 +1,9 @@
 var mongoose = require("mongoose"),
-	schema = mongoose.Schema,
+
+	Schema = mongoose.Schema,
+	
 	ArticleSchema = new Schema({
-		articleName:{
+		headline:{
 			type:String,
 			required:true
 		},
@@ -9,11 +11,19 @@ var mongoose = require("mongoose"),
 			type:String,
 			required:true
 		},
-		comments:{
+		link:{
+			type:String,
+			required:true
+		},
+		saved:{
+			type:Boolean,
+			default:false
+		},
+		comment:[{
 			type:Schema.Types.ObjectId,
 			ref:"Comment"
-		}
-	});
+		}]
+});
 
 var Article = mongoose.model("Article",ArticleSchema);
 

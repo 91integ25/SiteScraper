@@ -1,32 +1,36 @@
-var request = require("request");
-var cheerio = require("cheerio");
-var article = []
+var request = require("request"),
+    cheerio = require("cheerio"),
+    article = [];
+
 
 module.exports = {
 	getHtml:function(cb){
 
-		request("https://www.washingtonpost.com/",function(err,res,html){
+		request("https://www.nytimes.com/",function(err,res,html){
 			$ = cheerio.load(html);
+			var count = 0;
 			console.log("requestmade")
-			$("div.headline").each(function(i,element){
+			$("h2.story-heading").each(function(i,element){
 				var headline = $(element).children().text().trim();
-				var summary = $(element).next().text();
+				var link = $(element).children("a").attr("href");
+				var summary = $(element).siblings(".summary").text().trim();
 				
-					if(article.length < 6){
+					if(summary === "" || headline === ""){
+						count++;
+					}else{
+
 						article.push({
 							headline:headline,
+							link:link,
 							summary:summary
 						});
-					}else{
-						console.log("data pushed to route")
-						article.length
-						cb(article);
 					}
 
 				
 			
 
 			});
+			cb(article);
 			
 		})
 	}
