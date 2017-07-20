@@ -7,7 +7,7 @@ var express = require("express"),
 	mongoose = require("mongoose");
 
 
-mongoose.connect("mongodb://heroku_rk99299v:63qijh27bjtpr8c2pbjvqevb9b@ds157631.mlab.com:57631/heroku_rk99299v");
+mongoose.connect("mongodb://localhost/sitescraper");
 
 var db = mongoose.connection;
 
@@ -31,6 +31,7 @@ router.get("/",function(req,res){
 
 router.post("/save",function(req,res){
 	console.log(req.body)
+	
 var entry = new Article(req.body);
 entry.save(function(err,doc){
 	if(err){
@@ -56,19 +57,32 @@ router.get("/saved",function(req,res){
 	});
 });
 
-router.post("/comment",function(req,res){
+router.post("/comment/:id",function(req,res){
+	console.log("comment body",req.body)
 	var commentEntry = new Comment(req.body);
 	commentEntry.save(function(err,doc){
-		res.redirect("/saved");
+		if(err){
+			console.log(err)
+		}else{
+			Article.findOneAndUpdate({"_id":req.params.id},{"comment":doc._id})
+			.exec(function(err,doc){	
+				if(err){
+					console.log(err);
+				}else{
+					res.redirect("/saved");
+				}
+			});
+		}
+		
 	});
 });
 
-router.get("/populated",function(req,res){
-	Article.find({})
-	.populate("comments")
+router.get("/populated/:id",function(req,res){
+	Article.findOne({"_id":req.params.id})
+	.populate("comment")
 	.exec(function(err,doc){
-		console.log(doc)
-		res.render("saved",{article:doc});
+		console.log(doc,"/populated")
+		res.render("populated",{article:doc});
 	})
 })
 

@@ -15,14 +15,10 @@ var mongoose = require("mongoose"),
 			type:String,
 			required:true
 		},
-		saved:{
-			type:Boolean,
-			default:false
-		},
-		comment:[{
+		comment:{
 			type:Schema.Types.ObjectId,
 			ref:"Comment"
-		}]
+		}
 });
 
 var Article = mongoose.model("Article",ArticleSchema);

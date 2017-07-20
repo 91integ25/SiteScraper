@@ -5,13 +5,19 @@
 	</div>
 	<div class="panel-body">
 		<p class="">{{summary}}</p>
-		<form action="/comment" method="post">
+
+		<div>
+		<form action="/comment/{{_id}}" method="post">
 			<input type="hidden" name="headline" value="{{headline}}">
 			<input type="hidden" name="link" value="{{link}}">
 			<input type="hidden" name="summary" value="{{summary}}">
 			<input type="text" name="comment" value="">
 			<button class=""type="submit">Save comment</button>
 		</form>
+		<form action="/populated/{{_id}}" method="get">
+			<button class="primary" type="submit">View comments</button>
+		</form> 
+		</div>
 	</div>
 </div>
 {{/each}}
