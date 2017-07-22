@@ -78,6 +78,7 @@ router.post("/comment/:id",function(req,res){
 });
 
 router.get("/populated/:id",function(req,res){
+	console.log(req.body)
 	Article.findOne({"_id":req.params.id})
 	.populate("comment")
 	.exec(function(err,doc){
